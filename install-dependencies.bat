@@ -29,3 +29,9 @@ dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.13
 dotnet add package Pomelo.EntityFrameworkCore.MySql
 
 cd ..
+
+cd ./PedidosService
+dotnet add package Microsoft.EntityFrameworkCore --version 8.0.13
+dotnet add package Microsoft.EntityFrameworkCore.Relational --version 8.0.13
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.13
+dotnet add package Pomelo.EntityFrameworkCore.MySql
