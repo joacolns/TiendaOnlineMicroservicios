@@ -1,5 +1,6 @@
 .vs/
-.env
+*.env
+*.tmp
 
 # Microservicio de usuarios
 UsuariosService/bin/
@@ -12,3 +13,7 @@ ProductoService/bin/
 ProductoService/obj/
 ProductoService/bin/*
 ProductoService/obj/*
+
+bin/
+obj/
+
