@@ -22,5 +22,12 @@ CarritoService/obj/
 CarritoService/bin/*
 CarritoService/obj/*
 
+# Microservicio de pago
+PagoService/bin/
+PagoService/obj/
+PagoService/bin/*
+PagoService/obj/*
+
+
 
 
