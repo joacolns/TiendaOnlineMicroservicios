@@ -28,6 +28,11 @@ PagoService/obj/
 PagoService/bin/*
 PagoService/obj/*
 
+# Microservicio de pedidos
+PedidosService/bin/
+PedidosService/obj/
+PedidosService/bin/*
+PedidosService/obj/*
 
 
 
