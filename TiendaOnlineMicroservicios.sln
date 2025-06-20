@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarritoService", "CarritoSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoService", "PagoService\PagoService.csproj", "{A90E3DDD-4C6C-49C9-9174-9B10468E41EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidosService", "PedidosService\PedidosService.csproj", "{2751DFF8-F807-4109-B5C9-DFF43F776784}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A90E3DDD-4C6C-49C9-9174-9B10468E41EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A90E3DDD-4C6C-49C9-9174-9B10468E41EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A90E3DDD-4C6C-49C9-9174-9B10468E41EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2751DFF8-F807-4109-B5C9-DFF43F776784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2751DFF8-F807-4109-B5C9-DFF43F776784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2751DFF8-F807-4109-B5C9-DFF43F776784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2751DFF8-F807-4109-B5C9-DFF43F776784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
