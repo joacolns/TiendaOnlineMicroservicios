@@ -1,0 +1,6 @@
+.vs/
+UsuariosService/bin/
+UsuariosService/obj/
+UsuariosService/bin/*
+UsuariosService/obj/*
+.env
