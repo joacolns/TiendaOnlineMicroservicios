@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS CarritosDB;
+USE CarritosDB;
+
+CREATE TABLE Carritos (
+    Id INT NOT NULL AUTO_INCREMENT,
+    UsuarioId INT NOT NULL,
+    PRIMARY KEY(Id)
+) ENGINE=InnoDB;
+
+CREATE TABLE CarritoItems (
+    Id INT NOT NULL AUTO_INCREMENT,
+    ProductoId INT NOT NULL,
+    Cantidad INT NOT NULL,
+    CarritoId INT NOT NULL,
+    PRIMARY KEY(Id),
+    CONSTRAINT FK_CarritoId FOREIGN KEY (CarritoId) REFERENCES Carritos(Id)
+) ENGINE=InnoDB;
