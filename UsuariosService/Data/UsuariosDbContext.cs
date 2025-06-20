@@ -13,6 +13,6 @@ namespace UsuariosService.Data
         {
             modelBuilder.Entity<Usuario>().ToTable("usuarios");
         }
-
     }
+
 }
