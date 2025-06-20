@@ -1,6 +1,14 @@
 .vs/
+.env
+
+# Microservicio de usuarios
 UsuariosService/bin/
 UsuariosService/obj/
 UsuariosService/bin/*
 UsuariosService/obj/*
-.env
+
+# Microservicio de productos
+ProductoService/bin/
+ProductoService/obj/
+ProductoService/bin/*
+ProductoService/obj/*
