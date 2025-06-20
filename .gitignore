@@ -1,4 +1,6 @@
 .vs/
+bin/
+obj/
 *.env
 *.tmp
 
@@ -14,6 +16,11 @@ ProductoService/obj/
 ProductoService/bin/*
 ProductoService/obj/*
 
-bin/
-obj/
+# Microservicio de carrito
+CarritoService/bin/
+CarritoService/obj/
+CarritoService/bin/*
+CarritoService/obj/*
+
+
 
