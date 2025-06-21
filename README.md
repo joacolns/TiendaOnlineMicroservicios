@@ -1,39 +1,39 @@
 # Microservicios para tienda online
 
-Este proyecto implementa una tienda online utilizando una arquitectura de microservicios desarrollada en .NET 8. Cada microservicio es responsable de una funcionalidad específica y cuenta con su propia base de datos MySQL. El despliegue y la orquestación de los servicios se realiza mediante Docker Compose.
+Este proyecto implementa una tienda online utilizando una arquitectura de microservicios desarrollada en .NET 8. Cada microservicio es responsable de una funcionalidad especÃ­fica y cuenta con su propia base de datos MySQL. El despliegue y la orquestaciÃ³n de los servicios se realiza mediante Docker Compose.
 
 ## Microservicios
 
-- **UsuariosService**: Gestión de usuarios y autenticación.
-- **ProductosService**: Administración de productos.
-- **CarritoService**: Manejo de carritos de compra y sus ítems.
-- **PedidosService**: Gestión de pedidos realizados por los usuarios.
+- **UsuariosService**: GestiÃ³n de usuarios y autenticaciÃ³n.
+- **ProductosService**: AdministraciÃ³n de productos.
+- **CarritoService**: Manejo de carritos de compra y sus Ã­tems.
+- **PedidosService**: GestiÃ³n de pedidos realizados por los usuarios.
 - **PagoService**: Procesamiento de pagos.
 
-## Tecnologías
+## TecnologÃ­as
 
 - .NET 8
 - ASP.NET Core Web API
 - Entity Framework Core + Pomelo MySQL
 - MySQL 8
 - Docker & Docker Compose
-- Swagger (documentación de APIs)
+- Swagger (documentaciÃ³n de APIs)
 
 
-## Configuración y ejecución
+## ConfiguraciÃ³n y ejecuciÃ³n
 
 1. **Requisitos previos**
-   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y en ejecución.
+   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y en ejecuciÃ³n.
 
-2. **Construcción y despliegue**
-   - Desde la raíz del proyecto, ejecuta:
+2. **ConstrucciÃ³n y despliegue**
+   - Desde la raÃ­z del proyecto, ejecuta:
      ```sh
      docker-compose up --build
      ```
-   - Esto levantará todos los microservicios y sus bases de datos asociadas.
+   - Esto levantarÃ¡ todos los microservicios y sus bases de datos asociadas.
 
 3. **Acceso a los servicios**
-   - Los servicios estarán disponibles en los siguientes puertos:
+   - Los servicios estarÃ¡n disponibles en los siguientes puertos:
      - UsuariosService: [http://localhost:5001](http://localhost:5001)
      - ProductosService: [http://localhost:5002](http://localhost:5002)
      - CarritoService: [http://localhost:5003](http://localhost:5003)
@@ -41,9 +41,9 @@ Este proyecto implementa una tienda online utilizando una arquitectura de micros
      - PedidosService: [http://localhost:5005](http://localhost:5005)
 
 4. **Swagger**
-   - Cada microservicio expone su documentación Swagger en `/swagger` (por ejemplo, [http://localhost:5001/swagger](http://localhost:5001/swagger)).
+   - Cada microservicio expone su documentaciÃ³n Swagger en `/swagger` (por ejemplo, [http://localhost:5001/swagger](http://localhost:5001/swagger)).
 
-## Variables de entorno y cadenas de conexión
+## Variables de entorno y cadenas de conexiÃ³n
 
 Cada microservicio utiliza su propia base de datos MySQL, definida en `docker-compose.yml` y configurada mediante variables de entorno:
 
@@ -53,7 +53,7 @@ Ejemplo para UsuariosService:
 ConnectionStrings__DefaultConnection=server=localhost;port=3306;database=usuarios_db;user=root;password=2634
 ``
 
-Asegúrate de que las cadenas de conexión en los archivos `appsettings.json` permitan la sobreescritura por variables de entorno.
+AsegÃºrate de que las cadenas de conexiÃ³n en los archivos `appsettings.json` permitan la sobreescritura por variables de entorno.
 
 ## Endpoints principales
 
@@ -69,8 +69,8 @@ Asegúrate de que las cadenas de conexión en los archivos `appsettings.json` perm
 
 ### CarritoService
 - `GET /api/carritos/{usuarioId}` - Obtener carrito de usuario
-- `POST /api/carritos/{usuarioId}/items` - Agregar ítem al carrito
-- `DELETE /api/carritos/{usuarioId}/items/{itemId}` - Eliminar ítem del carrito
+- `POST /api/carritos/{usuarioId}/items` - Agregar Ã­tem al carrito
+- `DELETE /api/carritos/{usuarioId}/items/{itemId}` - Eliminar Ã­tem del carrito
 
 ### PedidosService
 - `GET /api/pedidos` - Listar pedidos
@@ -86,7 +86,7 @@ Asegúrate de que las cadenas de conexión en los archivos `appsettings.json` perm
 
 ## Notas
 
-- Cada microservicio es independiente y puede ser escalado o modificado sin afectar a los demás.
-- Las migraciones de base de datos deben ejecutarse al construir los contenedores (puedes agregar lógica para aplicar migraciones automáticamente si lo deseas).
-- Para detener y eliminar los contenedores y volúmenes:
+- Cada microservicio es independiente y puede ser escalado o modificado sin afectar a los demÃ¡s.
+- Las migraciones de base de datos deben ejecutarse al construir los contenedores (puedes agregar lÃ³gica para aplicar migraciones automÃ¡ticamente si lo deseas).
+- Para detener y eliminar los contenedores y volÃºmenes:
 `docker-compose down-v`
