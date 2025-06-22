@@ -46,12 +46,12 @@ Repite el proceso para cada microservicio cambiando el nombre del contenedor, la
 
 ## Variables de entorno y cadenas de conexión
 
-Cada microservicio utiliza su propia base de datos MySQL, definida en `docker-compose.yml` y configurada mediante variables de entorno:
+Cada microservicio utiliza su propia base de datos MySQL, definida en `appsettings.json`.
 
-Ejemplo para UsuariosService:
+Ejemplo para ProductosService:
 
 ``
-ConnectionStrings__DefaultConnection=server=localhost;port=3306;database=usuarios_db;user=root;password=2634
+"DefaultConnection": "Server=localhost;Database=productos_db;User=root;Password=2634;"
 ``
 
 Asegúrate de que las cadenas de conexión en los archivos `appsettings.json` permitan la sobreescritura por variables de entorno.
