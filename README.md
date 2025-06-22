@@ -16,32 +16,33 @@ Este proyecto implementa una tienda online utilizando una arquitectura de micros
 - ASP.NET Core Web API
 - Entity Framework Core + Pomelo MySQL
 - MySQL 8
-- Docker & Docker Compose
+- Docker
 - Swagger (documentación de APIs)
 
 
 ## Configuración y ejecución
 
-1. **Requisitos previos**
-   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y en ejecución.
+### 1. Requisitos Previos
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y en ejecución.
+- MySQL 8 disponible (puedes usar un contenedor Docker para cada base de datos
 
 2. **Construcción y despliegue**
-   - Desde la raíz del proyecto, ejecuta:
-     ```sh
-     docker-compose up --build
-     ```
-   - Esto levantará todos los microservicios y sus bases de datos asociadas.
+   
+- Cada microservicio tiene su propio `Dockerfile`. Para construir ejecutar cada uno:
+			
+	``
+	docker build -t <nombre-servicio> . docker run -d -p <puerto-local>:<puerto-contenedor> --env-file .env <nombre-servicio>
+    ``
 
-3. **Acceso a los servicios**
-   - Los servicios estarán disponibles en los siguientes puertos:
-     - UsuariosService: [http://localhost:5001](http://localhost:5001)
-     - ProductosService: [http://localhost:5002](http://localhost:5002)
-     - CarritoService: [http://localhost:5003](http://localhost:5003)
-     - PagoService: [http://localhost:5004](http://localhost:5004)
-     - PedidosService: [http://localhost:5005](http://localhost:5005)
+Ejemplo para UsuariosService:
 
-4. **Swagger**
-   - Cada microservicio expone su documentación Swagger en `/swagger` (por ejemplo, [http://localhost:5001/swagger](http://localhost:5001/swagger)).
+	cd UsuariosService docker build -t usuarios-service . docker run -d -p 5001:80 --env-file .env usuarios-service
+
+> **Nota:** Asegúrate de tener la base de datos MySQL correspondiente corriendo y accesible para cada microservicio (hay un script para cada uno).
+
+Repite el proceso para cada microservicio cambiando el nombre del contenedor, la base de datos y el puerto.
+
 
 ## Variables de entorno y cadenas de conexión
 
@@ -87,6 +88,4 @@ Asegúrate de que las cadenas de conexión en los archivos `appsettings.json` pe
 ## Notas
 
 - Cada microservicio es independiente y puede ser escalado o modificado sin afectar a los demás.
-- Las migraciones de base de datos deben ejecutarse al construir los contenedores (puedes agregar lógica para aplicar migraciones automáticamente si lo deseas).
-- Para detener y eliminar los contenedores y volúmenes:
-`docker-compose down-v`
+- Las migraciones de base de datos deben ejecutarse al construir los contenedores (puedes agregar lógica para aplicar migraciones automáticamente).
