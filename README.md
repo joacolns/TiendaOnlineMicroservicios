@@ -39,8 +39,11 @@ Ejemplo para UsuariosService:
 
 	cd UsuariosService docker build -t usuarios-service . docker run -d -p 5001:80 --env-file .env usuarios-service
 
-- Tambien se puede ejecutar `docker-compose.yml`. Para construir e ejecutar todos a la vez.
-
+- Tambien se puede ejecutar `docker-compose.yml`. Para construir e ejecutar todos a la vez;
+ 
+	``
+	 docker-compose up --build
+	 ``
 > **Nota:** Asegúrate de tener la base de datos MySQL correspondiente corriendo y accesible para cada microservicio (hay un script para cada uno).
 
 Repite el proceso para cada microservicio cambiando el nombre del contenedor, la base de datos y el puerto.
