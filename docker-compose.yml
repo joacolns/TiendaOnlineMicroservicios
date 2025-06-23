@@ -1,0 +1,166 @@
+version: '3.8'
+
+services:
+  # Base de datos para UsuariosService
+  mysql-usuarios:
+    image: mysql:8.0.36
+    container_name: mysql-usuarios
+    environment:
+      MYSQL_ROOT_PASSWORD: 2634
+      MYSQL_DATABASE: usuarios_db
+    volumes:
+      - ./UsuariosService/crear_db_local.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Base de datos para ProductosService
+  mysql-productos:
+    image: mysql:8.0.36
+    container_name: mysql-productos
+    environment:
+      MYSQL_ROOT_PASSWORD: 2634
+      MYSQL_DATABASE: productos_db
+    volumes:
+      - ./ProductosService/crear_db_local.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3308:3306"
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Base de datos para CarritoService
+  mysql-carritos:
+    image: mysql:8.0.36
+    container_name: mysql-carritos
+    environment:
+      MYSQL_ROOT_PASSWORD: 2634
+      MYSQL_DATABASE: carritosdb
+    volumes:
+      - ./CarritoService/crear_db_local.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3309:3306"
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Base de datos para PedidosService
+  mysql-pedidos:
+    image: mysql:8.0.36
+    container_name: mysql-pedidos
+    environment:
+      MYSQL_ROOT_PASSWORD: 2634
+      MYSQL_DATABASE: pedidos_db
+    volumes:
+      - ./PedidosService/crear_db_local.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3310:3306"
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Base de datos para PagoService
+  mysql-pagos:
+    image: mysql:8.0.36
+    container_name: mysql-pagos
+    environment:
+      MYSQL_ROOT_PASSWORD: 2634
+      MYSQL_DATABASE: pagos_db
+    volumes:
+      - ./PagoService/crear_db_local.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3311:3306"
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Microservicio de Usuarios
+  usuarios-service:
+    build:
+      context: .
+      dockerfile: UsuariosService/Dockerfile
+    container_name: usuarios-service
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql-usuarios;Database=usuarios_db;User=root;Password=2634;
+    depends_on:
+      - mysql-usuarios
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Microservicio de Productos
+  productos-service:
+    build:
+      context: .
+      dockerfile: ProductosService/Dockerfile
+    container_name: productos-service
+    ports:
+      - "5002:90"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql-productos;Database=productos_db;User=root;Password=2634;
+    depends_on:
+      - mysql-productos
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Microservicio de Carrito
+  carritos-service:
+    build:
+      context: .
+      dockerfile: CarritoService/Dockerfile
+    container_name: carritos-service
+    ports:
+      - "5003:50"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql-carritos;Database=carritosdb;User=root;Password=2634;
+    depends_on:
+      - mysql-carritos
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Microservicio de Pedidos
+  pedidos-service:
+    build:
+      context: .
+      dockerfile: PedidosService/Dockerfile
+    container_name: pedidos-service
+    ports:
+      - "5004:40"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql-pedidos;Database=pedidos_db;User=root;Password=2634;
+    depends_on:
+      - mysql-pedidos
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+  # Microservicio de Pagos
+  pagos-service:
+    build:
+      context: .
+      dockerfile: PagoService/Dockerfile
+    container_name: pagos-service
+    ports:
+      - "5005:50"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql-pagos;Database=pagos_db;User=root;Password=2634;
+    depends_on:
+      - mysql-pagos
+    networks:
+      - microservicios-network
+    restart: unless-stopped
+
+networks:
+  microservicios-network:
+    driver: bridge
